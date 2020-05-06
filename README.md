@@ -4,10 +4,10 @@ A redemption attempt at ComplexUpgradeUI
 
 ## TODO
 
-- [ ] Add Armour Compatibility
+- [x] Add Armour Compatibility
+- [x] Config Examples
 - [ ] Implement Extra Enchants
 - [ ] Custom Enchant Support
-- [ ] Config Examples
 
 ### Current Supported Upgradeable Items
 
@@ -15,6 +15,8 @@ A redemption attempt at ComplexUpgradeUI
 - Axe
 - Shovel
 - Sword
+- Bow
+- Armour
 
 ### How to Add An Enchant And Remove An Enchant
 In the `config.yml` there is a section called `enchants`.
