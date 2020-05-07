@@ -30,6 +30,6 @@ class UpgradeMain extends PluginBase {
 			$this->getLogger()->error("Config Version is outdated! Please delete your current config file!");
 			$this->getServer()->getPluginManager()->disablePlugin($this);
 		}
-		$this->getServer()->getCommandMap()->register("upgradeui", new UpgradeCommand("upgradeui", $this));
+		$this->getServer()->getCommandMap()->register("complexupgradeui", new UpgradeCommand("upgradeui", $this));
 	}
 }
