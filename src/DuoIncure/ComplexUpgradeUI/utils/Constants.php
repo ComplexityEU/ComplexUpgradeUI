@@ -9,14 +9,14 @@ interface Constants{
 	//Tools
 	const EFFICIENCY = "efficiency";
 	const UNBREAKING = "unbreaking";
-	const FORTUNE = "fortune"; //TODO Implement this.
+	const FORTUNE = "fortune";
 	const SILK_TOUCH = "silk_touch";
 
 	//Weapons
 	const SHARPNESS = "sharpness";
 	const KNOCKBACK = "knockback";
 	const FIRE_ASPECT = "fire_aspect";
-	const LOOTING = "looting"; //I might add this in future. I am not sure since Mobs don't exist.
+	const LOOTING = "looting";
 	const SMITE = "smite";
 	const BANE_OF_ANTHROPODS = "bane_of_anthropods";
 	//These 3 (looting, smite, bane of anthropods) don't need to be added yet as mobs do not exist.
@@ -37,7 +37,6 @@ interface Constants{
 	const THORNS = "thorns";
 	const DEPTH_STRIDER = "depth_strider";
 	const AQUA_AFFINITY = "aqua_affinity";
-	//Might implement Depth Strider, Aqua Affinity probably not.
 
 	//Misc
 	const MENDING = "mending";
