@@ -9,15 +9,14 @@ use function file_exists;
 use function mkdir;
 use function version_compare;
 
-class UpgradeMain extends PluginBase {
+class UpgradeMain extends PluginBase{
 
 	public const VERSION = 1;
 
 	/** @var Config */
 	private $cfg;
 
-	public function onEnable()
-	{
+	public function onEnable(){
 		if(!file_exists($this->getDataFolder())){
 			@mkdir($this->getDataFolder());
 		} else if(!file_exists($this->getDataFolder() . "config.yml")){
