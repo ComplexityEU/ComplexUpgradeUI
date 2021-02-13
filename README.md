@@ -29,8 +29,6 @@ enchants:
   pickaxe:
     #Enchant name
     efficiency:
-      #Choose if enchant can be "bought"
-      enabled: true
       #Max level for enchant
       max-level: 5
 ```
