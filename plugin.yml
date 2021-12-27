@@ -1,7 +1,12 @@
 ---
 name: ComplexUpgradeUI
-version: 1.0.0
+version: 2.0.0
 main: DuoIncure\ComplexUpgradeUI\UpgradeMain
-api: 3.12.0
+api: 4.0.0
+src-namespace-prefix: DuoIncure\ComplexUpgradeUI
 description: Upgrade your tools in a UI using XP!
+permissions:
+  upgradeui.command.upgrade:
+    default: true
+    description: Open the Upgrade UI
 ...

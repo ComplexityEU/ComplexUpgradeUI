@@ -2,7 +2,7 @@
 
 namespace DuoIncure\ComplexUpgradeUI\utils;
 
-use pocketmine\item\Item;
+use pocketmine\item\ItemIds;
 
 interface Constants{
 
@@ -16,6 +16,7 @@ interface Constants{
 	const SHARPNESS = "sharpness";
 	const KNOCKBACK = "knockback";
 	const FIRE_ASPECT = "fire_aspect";
+
 	const LOOTING = "looting";
 	const SMITE = "smite";
 	const BANE_OF_ANTHROPODS = "bane_of_anthropods";
@@ -77,62 +78,62 @@ interface Constants{
 	const MENDING_MAX = 1;
 
 	const PICKAXE = [
-		Item::WOODEN_PICKAXE,
-		Item::STONE_PICKAXE,
-		Item::IRON_PICKAXE,
-		Item::GOLD_PICKAXE,
-		Item::DIAMOND_PICKAXE
+		ItemIds::WOODEN_PICKAXE,
+        ItemIds::STONE_PICKAXE,
+        ItemIds::IRON_PICKAXE,
+        ItemIds::GOLD_PICKAXE,
+        ItemIds::DIAMOND_PICKAXE
 	];
 	const AXE = [
-		Item::WOODEN_AXE,
-		Item::STONE_AXE,
-		Item::IRON_AXE,
-		Item::GOLD_AXE,
-		Item::DIAMOND_AXE
+        ItemIds::WOODEN_AXE,
+        ItemIds::STONE_AXE,
+        ItemIds::IRON_AXE,
+        ItemIds::GOLD_AXE,
+        ItemIds::DIAMOND_AXE
 	];
 	const SHOVEL = [
-		Item::WOODEN_SHOVEL,
-		Item::STONE_SHOVEL,
-		Item::IRON_SHOVEL,
-		Item::GOLD_SHOVEL,
-		Item::DIAMOND_SHOVEL
-		];
+        ItemIds::WOODEN_SHOVEL,
+        ItemIds::STONE_SHOVEL,
+        ItemIds::IRON_SHOVEL,
+        ItemIds::GOLD_SHOVEL,
+        ItemIds::DIAMOND_SHOVEL
+    ];
 	const SWORD = [
-		Item::WOODEN_SWORD,
-		Item::STONE_SWORD,
-		Item::IRON_SWORD,
-		Item::GOLD_SWORD,
-		Item::DIAMOND_SWORD
+        ItemIds::WOODEN_SWORD,
+        ItemIds::STONE_SWORD,
+        ItemIds::IRON_SWORD,
+        ItemIds::GOLD_SWORD,
+        ItemIds::DIAMOND_SWORD
 	];
-	const BOW = Item::BOW;
+	const BOW = ItemIds::BOW;
 
 	const HELMET = [
-		Item::LEATHER_HELMET,
-		Item::CHAIN_HELMET,
-		Item::IRON_HELMET,
-		Item::GOLD_HELMET,
-		Item::DIAMOND_HELMET
+        ItemIds::LEATHER_HELMET,
+        ItemIds::CHAIN_HELMET,
+        ItemIds::IRON_HELMET,
+		ItemIds::GOLD_HELMET,
+		ItemIds::DIAMOND_HELMET
 	];
 	const CHESTPLATE = [
-		Item::LEATHER_TUNIC,
-		Item::CHAINMAIL_CHESTPLATE,
-		Item::IRON_CHESTPLATE,
-		Item::GOLD_CHESTPLATE,
-		Item::DIAMOND_CHESTPLATE
+		ItemIds::LEATHER_TUNIC,
+		ItemIds::CHAINMAIL_CHESTPLATE,
+		ItemIds::IRON_CHESTPLATE,
+		ItemIds::GOLD_CHESTPLATE,
+		ItemIds::DIAMOND_CHESTPLATE
 	];
 	const LEGGINGS = [
-		Item::LEATHER_PANTS,
-		Item::CHAIN_LEGGINGS,
-		Item::IRON_LEGGINGS,
-		Item::GOLD_LEGGINGS,
-		Item::DIAMOND_LEGGINGS
+		ItemIds::LEATHER_PANTS,
+		ItemIds::CHAIN_LEGGINGS,
+		ItemIds::IRON_LEGGINGS,
+		ItemIds::GOLD_LEGGINGS,
+		ItemIds::DIAMOND_LEGGINGS
 	];
 
 	const BOOTS = [
-		Item::LEATHER_BOOTS,
-		Item::CHAIN_BOOTS,
-		Item::IRON_BOOTS,
-		Item::GOLD_BOOTS,
-		Item::DIAMOND_BOOTS
+		ItemIds::LEATHER_BOOTS,
+		ItemIds::CHAIN_BOOTS,
+		ItemIds::IRON_BOOTS,
+		ItemIds::GOLD_BOOTS,
+		ItemIds::DIAMOND_BOOTS
 	];
 }

@@ -1,8 +1,4 @@
 ---
-#CONFIG VERSION
-#DO NOT CHANGE
-version: 1
-
 #Title of form. Use & for colours
 form-title: "&l&6UpgradeUI"
 
@@ -10,7 +6,7 @@ form-title: "&l&6UpgradeUI"
 xp-per-level: 0
 
 #List of enchants and their configurable values
-#PLEASE NOTE. SOME ENCHANTS ARE NOT ADDED BY POCKETMINE-MP AND SO ARE NOT IN THIS PLUGIN.
+#PLEASE NOTE. SOME ENCHANTS ARE NOT ADDED BY POCKETMINE-MP AND AS A RESULT ARE NOT IN THIS PLUGIN.
 enchants:
   #The tool for the enchants
   pickaxe:

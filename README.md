@@ -2,13 +2,6 @@
 
 A redemption attempt at ComplexUpgradeUI
 
-## TODO
-
-- [x] Add Armour Compatibility
-- [x] Config Examples
-- [ ] Implement Extra Enchants
-- [ ] Custom Enchant Support
-
 ### Current Supported Upgradeable Items
 
 - Pickaxe

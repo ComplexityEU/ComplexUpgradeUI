@@ -4,34 +4,33 @@ namespace DuoIncure\ComplexUpgradeUI\commands;
 
 use DuoIncure\ComplexUpgradeUI\ui\UpgradeForm;
 use DuoIncure\ComplexUpgradeUI\utils\Constants;
-use pocketmine\command\PluginCommand;
+use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
-use pocketmine\Player;
-use pocketmine\plugin\Plugin;
+use pocketmine\player\Player;
 use pocketmine\utils\TextFormat as TF;
 use DuoIncure\ComplexUpgradeUI\UpgradeMain;
 
-class UpgradeCommand extends PluginCommand implements Constants {
+class UpgradeCommand extends Command implements Constants {
 
 	/** @var UpgradeMain */
-	private $plugin;
+	private UpgradeMain $plugin;
 
-	public function __construct(string $name, Plugin $owner)
-	{
+	public function __construct(string $name, UpgradeMain $owner) {
 		$this->plugin = $owner;
-		parent::__construct($name, $owner);
+		parent::__construct($name, "Upgrade your forms using XP!", "/upgrade");
 		$this->setDescription("Upgrade your forms using XP!");
 		$this->setPermission("upgradeui.command.upgrade");
-		$this->setAliases(["complexupgradeui", "upgrade", "cuui", "uui"]);
+		$this->setAliases(["complexupgradeui", "upgradeui"]);
 	}
 
-	public function execute(CommandSender $sender, string $commandLabel, array $args)
-	{
+	public function execute(CommandSender $sender, string $commandLabel, array $args) {
 		if(!$sender instanceof Player){
 			$sender->sendMessage(TF::RED . "You must be in-game to use this command!");
+			return;
 		}
-		if(!$sender->hasPermission("upgradeui.command.upgrade")){
+		if(!$this->testPermission($sender)){
 			$sender->sendMessage(TF::RED . "You do not have permission to use this command!");
+		    return;
 		}
 		$itemID = $sender->getInventory()->getItemInHand()->getId();
 		if(in_array($itemID, self::PICKAXE, true)){

@@ -2,12 +2,13 @@
 build-by-default: true
 branches:
 - master
+- pm4
 projects:
   ComplexUpgradeUI:
     path: ""
     libs:
       - src: BreathTakinglyBinary/libDynamicForms/libDynamicForms
-        version: ^1.1.2
+        version: ^1.2.0
     lint:
       phpstan: false
 ...
