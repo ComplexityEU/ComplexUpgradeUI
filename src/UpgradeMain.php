@@ -9,6 +9,6 @@ class UpgradeMain extends PluginBase{
 
 	public function onEnable(): void {
 		$this->saveDefaultConfig();
-		$this->getServer()->getCommandMap()->register("complexupgradeui", new UpgradeCommand("upgrade", $this));
+		$this->getServer()->getCommandMap()->register("complexupgradeui", new UpgradeCommand($this));
 	}
 }

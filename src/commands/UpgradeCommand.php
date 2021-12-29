@@ -7,17 +7,18 @@ use DuoIncure\ComplexUpgradeUI\utils\Constants;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\player\Player;
+use pocketmine\plugin\PluginOwned;
+use pocketmine\plugin\PluginOwnedTrait;
 use pocketmine\utils\TextFormat as TF;
 use DuoIncure\ComplexUpgradeUI\UpgradeMain;
 
-class UpgradeCommand extends Command implements Constants {
+class UpgradeCommand extends Command implements PluginOwned, Constants {
 
-	/** @var UpgradeMain */
-	private UpgradeMain $plugin;
+    use PluginOwnedTrait;
 
-	public function __construct(string $name, UpgradeMain $owner) {
-		$this->plugin = $owner;
-		parent::__construct($name, "Upgrade your forms using XP!", "/upgrade");
+	public function __construct(UpgradeMain $plugin) {
+	    $this->owningPlugin = $plugin;
+		parent::__construct("upgrade", "Upgrade your forms using XP!", "/upgrade");
 		$this->setDescription("Upgrade your forms using XP!");
 		$this->setPermission("upgradeui.command.upgrade");
 		$this->setAliases(["complexupgradeui", "upgradeui"]);
@@ -32,25 +33,28 @@ class UpgradeCommand extends Command implements Constants {
 			$sender->sendMessage(TF::RED . "You do not have permission to use this command!");
 		    return;
 		}
+		/** @var UpgradeMain $plugin */
+		$plugin = $this->getOwningPlugin();
+
 		$itemID = $sender->getInventory()->getItemInHand()->getId();
 		if(in_array($itemID, self::PICKAXE, true)){
-			$sender->sendForm(new UpgradeForm($this->plugin, $sender, "pickaxe"));
+			$sender->sendForm(new UpgradeForm($plugin, $sender, "pickaxe"));
 		} elseif(in_array($itemID, self::AXE, true)){
-			$sender->sendForm(new UpgradeForm($this->plugin, $sender, "axe"));
+			$sender->sendForm(new UpgradeForm($plugin, $sender, "axe"));
 		} elseif(in_array($itemID, self::SHOVEL, true)){
-			$sender->sendForm(new UpgradeForm($this->plugin, $sender, "shovel"));
+			$sender->sendForm(new UpgradeForm($plugin, $sender, "shovel"));
 		} elseif(in_array($itemID, self::SWORD, true)){
-			$sender->sendForm(new UpgradeForm($this->plugin, $sender, "sword"));
+			$sender->sendForm(new UpgradeForm($plugin, $sender, "sword"));
 		} elseif(in_array($itemID, self::HELMET, true)){
-			$sender->sendForm(new UpgradeForm($this->plugin, $sender, "helmet"));
+			$sender->sendForm(new UpgradeForm($plugin, $sender, "helmet"));
 		} elseif(in_array($itemID, self::CHESTPLATE, true)){
-			$sender->sendForm(new UpgradeForm($this->plugin, $sender, "chestplate"));
+			$sender->sendForm(new UpgradeForm($plugin, $sender, "chestplate"));
 		} elseif(in_array($itemID, self::LEGGINGS, true)){
-			$sender->sendForm(new UpgradeForm($this->plugin, $sender, "leggings"));
+			$sender->sendForm(new UpgradeForm($plugin, $sender, "leggings"));
 		} elseif(in_array($itemID, self::BOOTS, true)){
-			$sender->sendForm(new UpgradeForm($this->plugin, $sender, "boots"));
+			$sender->sendForm(new UpgradeForm($plugin, $sender, "boots"));
 		} elseif($itemID === self::BOW){
-			$sender->sendForm(new UpgradeForm($this->plugin, $sender, "bow"));
+			$sender->sendForm(new UpgradeForm($plugin, $sender, "bow"));
 		}
 	}
 }
