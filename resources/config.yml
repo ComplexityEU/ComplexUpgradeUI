@@ -2,8 +2,12 @@
 #Title of form. Use & for colours
 form-title: "&l&6UpgradeUI"
 
-#How many XP levels are needed per enchant level
-xp-per-level: 0
+# Economy Options
+economy:
+  # Economy provider to use. Supported options:  "economyapi", "bedrockeconomy" and "xp"
+  provider: xp
+  # Cost per enchant level. If money is chosen 1 = $1. If XP is chosen 1 = 1 XP level.
+  cost: 5
 
 #List of enchants and their configurable values
 #PLEASE NOTE. SOME ENCHANTS ARE NOT ADDED BY POCKETMINE-MP AND AS A RESULT ARE NOT IN THIS PLUGIN.

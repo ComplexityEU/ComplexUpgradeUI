@@ -37,6 +37,8 @@ class UpgradeCommand extends Command implements PluginOwned, Constants {
 		$plugin = $this->getOwningPlugin();
 
 		$itemID = $sender->getInventory()->getItemInHand()->getId();
+
+
 		if(in_array($itemID, self::PICKAXE, true)){
 			$sender->sendForm(new UpgradeForm($plugin, $sender, "pickaxe"));
 		} elseif(in_array($itemID, self::AXE, true)){

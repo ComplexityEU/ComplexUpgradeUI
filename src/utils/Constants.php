@@ -20,7 +20,7 @@ interface Constants{
 	const LOOTING = "looting";
 	const SMITE = "smite";
 	const BANE_OF_ANTHROPODS = "bane_of_anthropods";
-	//These 3 (looting, smite, bane of anthropods) don't need to be added yet as mobs do not exist.
+	//These 3 (looting, smite, bane of anthropods) don't need to be added yet as mobs don't exist.
 
 	//Bows
 	const POWER = "power";

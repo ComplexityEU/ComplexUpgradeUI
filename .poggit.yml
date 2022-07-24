@@ -1,7 +1,6 @@
 --- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/DuoIncure/ComplexUpgradeUI
 build-by-default: true
 branches:
-- master
 - pm4
 projects:
   ComplexUpgradeUI:
@@ -9,6 +8,8 @@ projects:
     libs:
       - src: BreathTakinglyBinary/libDynamicForms/libDynamicForms
         version: ^1.2.0
+      - src: DaPigGuy/libPiggyEconomy/libPiggyEconomy
+        version: ^3.0.1
     lint:
       phpstan: false
 ...

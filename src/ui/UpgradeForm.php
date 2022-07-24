@@ -18,29 +18,30 @@ use function ucwords;
 
 class UpgradeForm extends SimpleForm implements Constants {
 
-	private string $type;
-	private array $cfg;
-
     /**
      * UpgradeForm constructor.
      * @param UpgradeMain $plugin
      * @param Player $player
      * @param string $type
      */
-	public function __construct(UpgradeMain $plugin, Player $player, string $type) {
-		$this->cfg = $plugin->getConfig()->getAll();
-		$this->type = $type;
+	public function __construct(
+	    private UpgradeMain $plugin,
+        Player $player,
+        private string $type
+    ) {
+		$cfg = $plugin->getConfig();
+
 		parent::__construct();
-		$msg = $this->cfg["form-title"] ?? "&l&6UpgradeUI";
+		$msg = $cfg->get("form-title", "&l&6UpgradeUI");
 		$this->setTitle(TF::colorize($msg));
-		foreach ($this->cfg["enchants"][$this->type] as $enchantName => $data){
+		foreach ($cfg->getNested("enchants.{$this->type}") as $enchantName => $data){
 			$ucName = strtoupper($enchantName);
 			$eidMap = EnchantmentIdMap::getInstance();
 			$enchantName = str_replace("_", " ", $enchantName);
 			$currentEnchantLevel = $player->getInventory()->getItemInHand()->getEnchantmentLevel($eidMap->fromId(constant(EnchantmentIds::class . "::" . $ucName)));
 			if($currentEnchantLevel < ($data["max-level"] ?? constant(self::class . "::" . $ucName . "_MAX"))) {
-				$requiredLevels = $currentEnchantLevel * ($this->cfg["xp-per-level"] ?? 5) + 5;
-				$this->addButton(TF::GOLD . ucwords($enchantName) . TF::EOL . TF::DARK_GRAY . "Levels Required: $requiredLevels", constant(self::class . "::" . $ucName));
+				$requiredCostText = $this->getCostText($currentEnchantLevel);
+				$this->addButton(TF::GOLD . ucwords($enchantName) . TF::EOL . TF::DARK_GRAY . $requiredCostText, constant(self::class . "::" . $ucName));
 			} elseif($currentEnchantLevel >= ($data["max-level"] ?? constant(self::class . "::" . $ucName . "_MAX"))){
 				$this->addButton(TF::GOLD . ucwords($enchantName) . TF::EOL . TF::RED . "MAX LEVEL", constant(self::class . "::" . $ucName));
 			}
@@ -52,7 +53,7 @@ class UpgradeForm extends SimpleForm implements Constants {
 	 * @param $data
 	 */
 	public function onResponse(Player $player, $data): void {
-		foreach($this->cfg["enchants"][$this->type] as $enchantName => $configData){
+		foreach($this->plugin->getConfig()->getNested("enchants.{$this->type}") as $enchantName => $configData){
 			$ucEnchantName = strtoupper($enchantName);
 			switch ($data){
 				case constant(self::class . "::" . $ucEnchantName):
@@ -63,19 +64,45 @@ class UpgradeForm extends SimpleForm implements Constants {
 						$player->sendMessage(TF::RED . "You already have the max level of " . ucfirst($enchantName) . "!");
 						return;
 					}
-					if($player->getXpManager()->getXpLevel() < ($currentLevel * ($this->cfg["xp-per-level"] ?? 5) + 5)){
-						$player->sendMessage(TF::RED . "You do not have enough XP levels for this!");
-						return;
-					}
-					$enchantmentToAdd = $eidMap->fromId(constant(EnchantmentIds::class . "::" . $ucEnchantName));
-					$levelToSet = $currentLevel + 1;
-					$item->addEnchantment(new EnchantmentInstance($enchantmentToAdd, $levelToSet));
-					$player->getInventory()->setItemInHand($item);
-					$playerCurrentXP = $player->getXpManager()->getXpLevel();
-					$newXPLevel = $playerCurrentXP - ($currentLevel * ($this->cfg["xp-per-level"] ?? 5) + 5);
-					$player->getXpManager()->setXpLevel($newXPLevel);
+                    $this->plugin->getEconomyProvider()->getMoney($player, function(float|int $amount) use ($player, $currentLevel, $item, $eidMap, $ucEnchantName){
+                        $cost = $this->getCost($currentLevel);
+                        if($amount < $cost){
+                            $player->sendMessage(TF::RED . "You cannot afford this enchantment!");
+                            return;
+                        }
+
+                        $enchantmentToAdd = $eidMap->fromId(constant(EnchantmentIds::class . "::" . $ucEnchantName));
+                        $levelToSet = $currentLevel + 1;
+                        $item->addEnchantment(new EnchantmentInstance($enchantmentToAdd, $levelToSet));
+                        $player->getInventory()->setItemInHand($item);
+
+                        $this->plugin->getEconomyProvider()->takeMoney($player, $cost);
+                    });
 					break;
 			}
 		}
 	}
+
+	public function getCostText(int $currentEnchantLevel): string{
+	    switch($this->plugin->getConfig()->getNested("economy.provider")){
+            case "bedrockeconomy":
+            case "economyapi":
+                $monUnit = $this->plugin->getEconomyProvider()->getMonetaryUnit();
+                $cost = $currentEnchantLevel * $this->plugin->getConfig()->getNested("economy.cost", 10000) + 10000;
+                return "Cost: {$monUnit}{$cost}";
+            case "xp":
+                $cost = $currentEnchantLevel * $this->plugin->getConfig()->getNested("economy.cost", 5) + 5;
+                return "Required Levels: {$cost}";
+        }
+        // Shouldn't be returned.
+        return "Cost: N/A";
+    }
+
+    public function getCost(int $currentEnchantLevel): float|int{
+        return match ($this->plugin->getConfig()->getNested("economy.provider")) {
+            "bedrockeconomy", "economyapi" => $currentEnchantLevel * $this->plugin->getConfig()->getNested("economy.cost", 10000) + 10000,
+            "xp" => $currentEnchantLevel * $this->plugin->getConfig()->getNested("economy.cost", 5) + 5,
+            default => 0,
+        };
+    }
 }
