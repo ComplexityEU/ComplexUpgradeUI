@@ -5,12 +5,14 @@ namespace DuoIncure\ComplexUpgradeUI\ui;
 use pocketmine\data\bedrock\EnchantmentIdMap;
 use pocketmine\data\bedrock\EnchantmentIds;
 use pocketmine\item\enchantment\EnchantmentInstance;
+use pocketmine\item\enchantment\StringToEnchantmentParser;
 use pocketmine\player\Player;
 use pocketmine\utils\TextFormat as TF;
 use DuoIncure\ComplexUpgradeUI\UpgradeMain;
 use DuoIncure\ComplexUpgradeUI\utils\Constants;
 use BreathTakinglyBinary\libDynamicForms\SimpleForm;
 use function str_replace;
+use function strtolower;
 use function ucfirst;
 use function strtoupper;
 use function constant;
@@ -32,8 +34,7 @@ class UpgradeForm extends SimpleForm implements Constants {
 		$cfg = $plugin->getConfig();
 
 		parent::__construct();
-		$msg = $cfg->get("form-title", "&l&6UpgradeUI");
-		$this->setTitle(TF::colorize($msg));
+		$this->setTitle(TF::colorize($cfg->get("form-title", "&l&6UpgradeUI")));
 		foreach ($cfg->getNested("enchants.{$this->type}") as $enchantName => $data){
 			$ucName = strtoupper($enchantName);
 			$eidMap = EnchantmentIdMap::getInstance();
@@ -54,24 +55,25 @@ class UpgradeForm extends SimpleForm implements Constants {
 	 */
 	public function onResponse(Player $player, $data): void {
 		foreach($this->plugin->getConfig()->getNested("enchants.{$this->type}") as $enchantName => $configData){
-			$ucEnchantName = strtoupper($enchantName);
+			$enchantName = strtolower($enchantName);
 			switch ($data){
-				case constant(self::class . "::" . $ucEnchantName):
+				case constant(self::class . "::" . strtoupper($enchantName)):
 					$item = $player->getInventory()->getItemInHand();
-                    $eidMap = EnchantmentIdMap::getInstance();
-					$currentLevel = $item->getEnchantmentLevel($eidMap->fromId(constant(EnchantmentIds::class . "::" . $ucEnchantName)));
-					if($currentLevel >= ($configData["max-level"] ?? constant(self::class . "::" . $ucEnchantName . "_MAX"))){
+
+					$enchantment = StringToEnchantmentParser::getInstance()->parse($enchantName);
+					$currentLevel = $item->getEnchantmentLevel($enchantment);
+					if($currentLevel >= ($configData["max-level"] ?? constant(self::class . "::" . strtoupper($enchantName) . "_MAX"))){
 						$player->sendMessage(TF::RED . "You already have the max level of " . ucfirst($enchantName) . "!");
 						return;
 					}
-                    $this->plugin->getEconomyProvider()->getMoney($player, function(float|int $amount) use ($player, $currentLevel, $item, $eidMap, $ucEnchantName, $configData){
+                    $this->plugin->getEconomyProvider()->getMoney($player, function(float|int $amount) use ($player, $currentLevel, $item, $enchantName, $configData){
                         $cost = $this->getCost($currentLevel, $configData);
                         if($amount < $cost){
                             $player->sendMessage(TF::RED . "You cannot afford this enchantment!");
                             return;
                         }
 
-                        $enchantmentToAdd = $eidMap->fromId(constant(EnchantmentIds::class . "::" . $ucEnchantName));
+                        $enchantmentToAdd = StringToEnchantmentParser::getInstance()->parse($enchantName);
                         $levelToSet = $currentLevel + 1;
                         $item->addEnchantment(new EnchantmentInstance($enchantmentToAdd, $levelToSet));
                         $player->getInventory()->setItemInHand($item);
