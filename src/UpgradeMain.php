@@ -7,6 +7,7 @@ use DaPigGuy\libPiggyEconomy\exceptions\UnknownProviderException;
 use DaPigGuy\libPiggyEconomy\libPiggyEconomy;
 use DaPigGuy\libPiggyEconomy\providers\EconomyProvider;
 use DuoIncure\ComplexUpgradeUI\commands\UpgradeCommand;
+use JackMD\UpdateNotifier\UpdateNotifier;
 use pocketmine\plugin\PluginBase;
 
 class UpgradeMain extends PluginBase{
@@ -18,6 +19,8 @@ class UpgradeMain extends PluginBase{
      * @throws MissingProviderDependencyException
      */
     protected function onEnable(): void {
+        UpdateNotifier::checkUpdate($this->getDescription()->getName(), $this->getDescription()->getVersion());
+
         $this->saveDefaultConfig();
 
 	    libPiggyEconomy::init();
