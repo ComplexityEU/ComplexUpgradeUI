@@ -40,7 +40,7 @@ class UpgradeForm extends SimpleForm implements Constants {
 			$enchantName = str_replace("_", " ", $enchantName);
 			$currentEnchantLevel = $player->getInventory()->getItemInHand()->getEnchantmentLevel($eidMap->fromId(constant(EnchantmentIds::class . "::" . $ucName)));
 			if($currentEnchantLevel < ($data["max-level"] ?? constant(self::class . "::" . $ucName . "_MAX"))) {
-				$requiredCostText = $this->getCostText($currentEnchantLevel);
+				$requiredCostText = $this->getCostText($currentEnchantLevel, $data);
 				$this->addButton(TF::GOLD . ucwords($enchantName) . TF::EOL . TF::DARK_GRAY . $requiredCostText, constant(self::class . "::" . $ucName));
 			} elseif($currentEnchantLevel >= ($data["max-level"] ?? constant(self::class . "::" . $ucName . "_MAX"))){
 				$this->addButton(TF::GOLD . ucwords($enchantName) . TF::EOL . TF::RED . "MAX LEVEL", constant(self::class . "::" . $ucName));
@@ -64,8 +64,8 @@ class UpgradeForm extends SimpleForm implements Constants {
 						$player->sendMessage(TF::RED . "You already have the max level of " . ucfirst($enchantName) . "!");
 						return;
 					}
-                    $this->plugin->getEconomyProvider()->getMoney($player, function(float|int $amount) use ($player, $currentLevel, $item, $eidMap, $ucEnchantName){
-                        $cost = $this->getCost($currentLevel);
+                    $this->plugin->getEconomyProvider()->getMoney($player, function(float|int $amount) use ($player, $currentLevel, $item, $eidMap, $ucEnchantName, $configData){
+                        $cost = $this->getCost($currentLevel, $configData);
                         if($amount < $cost){
                             $player->sendMessage(TF::RED . "You cannot afford this enchantment!");
                             return;
@@ -83,25 +83,23 @@ class UpgradeForm extends SimpleForm implements Constants {
 		}
 	}
 
-	public function getCostText(int $currentEnchantLevel): string{
+	public function getCostText(int $currentEnchantLevel, array $data): string{
 	    switch($this->plugin->getConfig()->getNested("economy.provider")){
             case "bedrockeconomy":
             case "economyapi":
                 $monUnit = $this->plugin->getEconomyProvider()->getMonetaryUnit();
-                $cost = $currentEnchantLevel * $this->plugin->getConfig()->getNested("economy.cost", 10000) + 10000;
-                return "Cost: {$monUnit}{$cost}";
+                return "Cost: {$monUnit}{$this->getCost($currentEnchantLevel, $data)}";
             case "xp":
-                $cost = $currentEnchantLevel * $this->plugin->getConfig()->getNested("economy.cost", 5) + 5;
-                return "Required Levels: {$cost}";
+                return "Required Levels: {$this->getCost($currentEnchantLevel, $data)}";
         }
         // Shouldn't be returned.
         return "Cost: N/A";
     }
 
-    public function getCost(int $currentEnchantLevel): float|int{
+    public function getCost(int $currentEnchantLevel, array $data): float|int{
         return match ($this->plugin->getConfig()->getNested("economy.provider")) {
-            "bedrockeconomy", "economyapi" => $currentEnchantLevel * $this->plugin->getConfig()->getNested("economy.cost", 10000) + 10000,
-            "xp" => $currentEnchantLevel * $this->plugin->getConfig()->getNested("economy.cost", 5) + 5,
+            "bedrockeconomy", "economyapi" => $currentEnchantLevel * ($data["cost"] ?? 10000) + 10000,
+            "xp" => $currentEnchantLevel * ($data["cost"] ?? 5) + 5,
             default => 0,
         };
     }

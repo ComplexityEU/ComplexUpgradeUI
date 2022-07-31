@@ -1,13 +1,11 @@
 ---
-#Title of form. Use & for colours
+# Title of Upgrade UI. Use & for colours
 form-title: "&l&6UpgradeUI"
 
 # Economy Options
 economy:
   # Economy provider to use. Supported options:  "economyapi", "bedrockeconomy" and "xp"
   provider: xp
-  # Cost per enchant level. If money is chosen 1 = $1. If XP is chosen 1 = 1 XP level.
-  cost: 5
 
 #List of enchants and their configurable values
 #PLEASE NOTE. SOME ENCHANTS ARE NOT ADDED BY POCKETMINE-MP AND AS A RESULT ARE NOT IN THIS PLUGIN.
@@ -18,90 +16,131 @@ enchants:
     efficiency:
       #Max level for enchant
       max-level: 5
+      # Cost per enchant level. If money is chosen 1 = $1. If XP is chosen 1 = 1 XP level.
+      cost: 5
     #Enchant name
     unbreaking:
       #Max level for enchant
       max-level: 3
+      # Cost per enchant level. If money is chosen 1 = $1. If XP is chosen 1 = 1 XP level.
+      cost: 5
     #Enchant name
     silk_touch:
       #Max level for enchant
       max-level: 1
+      # Cost per enchant level. If money is chosen 1 = $1. If XP is chosen 1 = 1 XP level.
+      cost: 5
   shovel:
     efficiency:
       max-level: 5
+      cost: 5
     unbreaking:
       max-level: 3
+      cost: 5
     silk_touch:
       max-level: 1
+      cost: 5
   axe:
     efficiency:
       max-level: 5
+      cost: 5
     unbreaking:
       max-level: 3
+      cost: 5
     sharpness:
       max-level: 5
+      cost: 5
   sword:
     sharpness:
       max-level: 5
+      cost: 5
     knockback:
       max-level: 2
+      cost: 5
     fire_aspect:
       max-level: 2
+      cost: 5
   bow:
     power:
       max-level: 5
+      cost: 5
     punch:
       max-level: 2
+      cost: 5
     flame:
       max-level: 2
+      cost: 5
     infinity:
       max-level: 1
+      cost: 5
   helmet:
     protection:
       max-level: 4
+      cost: 5
     fire_protection:
       max-level: 4
+      cost: 5
     blast_protection:
       max-level: 4
+      cost: 5
     projectile_protection:
       max-level: 4
+      cost: 5
     thorns:
       max-level: 3
+      cost: 5
     respiration:
       max-level: 3
+      cost: 5
   chestplate:
     protection:
       max-level: 4
+      cost: 5
     fire_protection:
       max-level: 4
+      cost: 5
     blast_protection:
       max-level: 4
+      cost: 5
     projectile_protection:
       max-level: 4
+      cost: 5
     thorns:
       max-level: 3
+      cost: 5
   leggings:
     protection:
       max-level: 4
+      cost: 5
     fire_protection:
       max-level: 4
+      cost: 5
     blast_protection:
       max-level: 4
+      cost: 5
     projectile_protection:
       max-level: 4
+      cost: 5
     thorns:
       max-level: 3
+      cost: 5
   boots:
     protection:
       max-level: 4
+      cost: 5
     fire_protection:
       max-level: 4
+      cost: 5
     blast_protection:
       max-level: 4
+      cost: 5
     projectile_protection:
       max-level: 4
+      cost: 5
     thorns:
       max-level: 3
+      cost: 5
     feather_falling:
       max-level: 4
+      cost: 5
 ...
