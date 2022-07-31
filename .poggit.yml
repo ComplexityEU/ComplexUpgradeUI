@@ -5,6 +5,7 @@ branches:
 projects:
   ComplexUpgradeUI:
     path: ""
+    icon: "resources/image/Book.gif"
     libs:
       - src: BreathTakinglyBinary/libDynamicForms/libDynamicForms
         version: ^1.2.0
