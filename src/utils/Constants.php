@@ -136,4 +136,14 @@ interface Constants{
 		ItemIds::GOLD_BOOTS,
 		ItemIds::DIAMOND_BOOTS
 	];
+
+	const TYPE_PICKAXE = "pickaxe";
+	const TYPE_AXE = "axe";
+	const TYPE_SHOVEL = "shovel";
+	const TYPE_SWORD = "sword";
+	const TYPE_HELMET = "helmet";
+	const TYPE_CHESTPLATE = "chestplate";
+	const TYPE_LEGGINGS = "leggings";
+	const TYPE_BOOTS = "boots";
+	const TYPE_BOW = "bow";
 }

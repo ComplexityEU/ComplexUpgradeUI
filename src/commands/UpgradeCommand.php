@@ -29,10 +29,8 @@ class UpgradeCommand extends Command implements PluginOwned, Constants {
 			$sender->sendMessage(TF::RED . "You must be in-game to use this command!");
 			return;
 		}
-		if(!$this->testPermission($sender)){
-			$sender->sendMessage(TF::RED . "You do not have permission to use this command!");
-		    return;
-		}
+		if(!$this->testPermission($sender)) return;
+
 		/** @var UpgradeMain $plugin */
 		$plugin = $this->getOwningPlugin();
 
@@ -40,23 +38,23 @@ class UpgradeCommand extends Command implements PluginOwned, Constants {
 
 
 		if(in_array($itemID, self::PICKAXE, true)){
-			$sender->sendForm(new UpgradeForm($plugin, $sender, "pickaxe"));
+			$sender->sendForm(new UpgradeForm($plugin, $sender, self::TYPE_PICKAXE));
 		} elseif(in_array($itemID, self::AXE, true)){
-			$sender->sendForm(new UpgradeForm($plugin, $sender, "axe"));
+			$sender->sendForm(new UpgradeForm($plugin, $sender, self::TYPE_AXE));
 		} elseif(in_array($itemID, self::SHOVEL, true)){
-			$sender->sendForm(new UpgradeForm($plugin, $sender, "shovel"));
+			$sender->sendForm(new UpgradeForm($plugin, $sender, self::TYPE_SHOVEL));
 		} elseif(in_array($itemID, self::SWORD, true)){
-			$sender->sendForm(new UpgradeForm($plugin, $sender, "sword"));
+			$sender->sendForm(new UpgradeForm($plugin, $sender, self::TYPE_SWORD));
 		} elseif(in_array($itemID, self::HELMET, true)){
-			$sender->sendForm(new UpgradeForm($plugin, $sender, "helmet"));
+			$sender->sendForm(new UpgradeForm($plugin, $sender, self::TYPE_HELMET));
 		} elseif(in_array($itemID, self::CHESTPLATE, true)){
-			$sender->sendForm(new UpgradeForm($plugin, $sender, "chestplate"));
+			$sender->sendForm(new UpgradeForm($plugin, $sender, self::TYPE_CHESTPLATE));
 		} elseif(in_array($itemID, self::LEGGINGS, true)){
-			$sender->sendForm(new UpgradeForm($plugin, $sender, "leggings"));
+			$sender->sendForm(new UpgradeForm($plugin, $sender, self::TYPE_LEGGINGS));
 		} elseif(in_array($itemID, self::BOOTS, true)){
-			$sender->sendForm(new UpgradeForm($plugin, $sender, "boots"));
+			$sender->sendForm(new UpgradeForm($plugin, $sender, self::TYPE_BOOTS));
 		} elseif($itemID === self::BOW){
-			$sender->sendForm(new UpgradeForm($plugin, $sender, "bow"));
+			$sender->sendForm(new UpgradeForm($plugin, $sender, self::TYPE_BOW));
 		}
 	}
 }
