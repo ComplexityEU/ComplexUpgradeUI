@@ -28,6 +28,7 @@ class EnchantUtils{
                 BlockLegacyIds::REDSTONE_ORE => 6,
                 BlockLegacyIds::MELON_BLOCK => 8,
                 BlockLegacyIds::LAPIS_ORE => 18,
+                default => 1
             },
             2 => match ($id) {
                 BlockLegacyIds::COAL_ORE, BlockLegacyIds::NETHER_QUARTZ_ORE, BlockLegacyIds::DIAMOND_ORE, BlockLegacyIds::EMERALD_ORE => 3,
@@ -37,6 +38,7 @@ class EnchantUtils{
                 BlockLegacyIds::REDSTONE_ORE => 7,
                 BlockLegacyIds::MELON_BLOCK => 9,
                 BlockLegacyIds::LAPIS_ORE => 27,
+                default => 1
             },
             3 => match ($id) {
                 BlockLegacyIds::COAL_ORE, BlockLegacyIds::NETHER_QUARTZ_ORE, BlockLegacyIds::DIAMOND_ORE, BlockLegacyIds::EMERALD_ORE, BlockLegacyIds::GLOWSTONE => 4,
@@ -45,6 +47,7 @@ class EnchantUtils{
                 BlockLegacyIds::REDSTONE_ORE => 8,
                 BlockLegacyIds::MELON_BLOCK => 9,
                 BlockLegacyIds::LAPIS_ORE => 36,
+                default => 1
             },
             default => 1,
         };

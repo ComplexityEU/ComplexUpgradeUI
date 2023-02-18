@@ -15,22 +15,25 @@ use function mt_rand;
 
 class EventListener implements Listener{
 
-    public function onBreak(BlockBreakEvent $event){
+    public function onBreak(BlockBreakEvent $event): void{
         $item = $event->getItem();
         $block = $event->getBlock();
         $drops = $event->getDrops();
 
-        $fortuneEnchantment = $item->getEnchantment(StringToEnchantmentParser::getInstance()->parse("fortune"));
+        $fortuneEnchantment = StringToEnchantmentParser::getInstance()->parse("fortune");
+        if($fortuneEnchantment !== null) {
+            $itemEnchantment = $item->getEnchantment($fortuneEnchantment);
 
-        if(!$fortuneEnchantment instanceof EnchantmentInstance) return;
-        if(!in_array($block->getId(), EnchantUtils::SUPPORTED_FORTUNE_BLOCKS)) return;
+            if (!$itemEnchantment instanceof EnchantmentInstance) return;
+            if (!in_array($block->getId(), EnchantUtils::SUPPORTED_FORTUNE_BLOCKS, true)) return;
 
-        $increase = mt_rand(0, $fortuneEnchantment->getLevel() + 2) - 1;
-        if($increase < 0) $increase = 0;
+            $increase = mt_rand(0, $itemEnchantment->getLevel() + 2) - 1;
+            if ($increase < 0) $increase = 0;
 
-        if($item instanceof TieredTool && $item->getBlockToolType() === $block->getBreakInfo()->getToolType() && $item->getBlockToolHarvestLevel() >= $block->getBreakInfo()->getToolHarvestLevel()) {
-            $maxPoss = EnchantUtils::getMaxFortuneDrops($block->getId(), $fortuneEnchantment->getLevel());
-            $event->setDrops($this->increaseDrops($drops, $maxPoss, $increase));
+            if ($item instanceof TieredTool && $item->getBlockToolType() === $block->getBreakInfo()->getToolType() && $item->getBlockToolHarvestLevel() >= $block->getBreakInfo()->getToolHarvestLevel()) {
+                $maxPoss = EnchantUtils::getMaxFortuneDrops($block->getId(), $itemEnchantment->getLevel());
+                $event->setDrops($this->increaseDrops($drops, $maxPoss, $increase));
+            }
         }
     }
 
@@ -38,7 +41,7 @@ class EventListener implements Listener{
      * @param Item[] $drops
      * @param int $max
      * @param int $amount
-     * @return array
+     * @return Item[]
      * @credit CortexPE/TeaSpoon
      */
     private function increaseDrops(array $drops, int $max, int $amount): array{
