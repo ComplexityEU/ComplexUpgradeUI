@@ -2,3 +2,36 @@ parameters:
     level: 9
     paths:
         - src
+    excludePaths:
+        - src/ui
+        - src/commands
+    ignoreErrors:
+            -
+                message: "#^Call to static method checkUpdate\\(\\) on an unknown class JackMD\\\\UpdateNotifier\\\\UpdateNotifier\\.$#"
+                count: 1
+                path: src/UpgradeMain.php
+
+            -
+                message: "#^Call to static method getProvider\\(\\) on an unknown class DaPigGuy\\\\libPiggyEconomy\\\\libPiggyEconomy\\.$#"
+                count: 1
+                path: src/UpgradeMain.php
+
+            -
+                message: "#^Call to static method init\\(\\) on an unknown class DaPigGuy\\\\libPiggyEconomy\\\\libPiggyEconomy\\.$#"
+                count: 1
+                path: src/UpgradeMain.php
+
+            -
+                message: "#^Method DuoIncure\\\\ComplexUpgradeUI\\\\UpgradeMain\\:\\:getEconomyProvider\\(\\) has invalid return type DaPigGuy\\\\libPiggyEconomy\\\\providers\\\\EconomyProvider\\.$#"
+                count: 1
+                path: src/UpgradeMain.php
+
+            -
+                message: "#^PHPDoc tag @throws with type DaPigGuy\\\\libPiggyEconomy\\\\exceptions\\\\MissingProviderDependencyException\\|DaPigGuy\\\\libPiggyEconomy\\\\exceptions\\\\UnknownProviderException is not subtype of Throwable$#"
+                count: 1
+                path: src/UpgradeMain.php
+
+            -
+                message: "#^Property DuoIncure\\\\ComplexUpgradeUI\\\\UpgradeMain\\:\\:\\$provider has unknown class DaPigGuy\\\\libPiggyEconomy\\\\providers\\\\EconomyProvider as its type\\.$#"
+                count: 1
+                path: src/UpgradeMain.php
