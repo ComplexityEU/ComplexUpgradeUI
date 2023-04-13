@@ -3,50 +3,55 @@ declare(strict_types=1);
 
 namespace DuoIncure\ComplexUpgradeUI\utils;
 
-use pocketmine\block\BlockLegacyIds;
+use pocketmine\block\BlockTypeIds;
 
 class EnchantUtils{
 
     // TODO: Implement other blocks.
     public const SUPPORTED_FORTUNE_BLOCKS = [
-        BlockLegacyIds::COAL_ORE,
-        BlockLegacyIds::REDSTONE_ORE,
-        BlockLegacyIds::LAPIS_ORE,
-        BlockLegacyIds::DIAMOND_ORE,
-        BlockLegacyIds::EMERALD_ORE,
-        BlockLegacyIds::QUARTZ_ORE,
-        BlockLegacyIds::GLOWSTONE,
-        BlockLegacyIds::SEA_LANTERN,
+        BlockTypeIds::COAL_ORE,
+        BlockTypeIds::DEEPSLATE_COAL_ORE,
+        BlockTypeIds::REDSTONE_ORE,
+        BlockTypeIds::DEEPSLATE_REDSTONE_ORE,
+        BlockTypeIds::LAPIS_LAZULI_ORE,
+        BlockTypeIds::DEEPSLATE_LAPIS_LAZULI_ORE,
+        BlockTypeIds::DIAMOND_ORE,
+        BlockTypeIds::DEEPSLATE_DIAMOND_ORE,
+        BlockTypeIds::EMERALD_ORE,
+        BlockTypeIds::DEEPSLATE_EMERALD_ORE,
+        BlockTypeIds::NETHER_QUARTZ_ORE,
+        BlockTypeIds::GLOWSTONE,
+        BlockTypeIds::SEA_LANTERN,
     ];
 
     public static function getMaxFortuneDrops(int $id, int $fortuneLevel): int{
         return match ($fortuneLevel) {
             1 => match ($id) {
-                BlockLegacyIds::COAL_ORE, BlockLegacyIds::NETHER_QUARTZ_ORE, BlockLegacyIds::DIAMOND_ORE, BlockLegacyIds::EMERALD_ORE => 2,
-                BlockLegacyIds::GLOWSTONE, BlockLegacyIds::SEA_LANTERN => 4,
-                BlockLegacyIds::NETHER_WART_BLOCK => 5,
-                BlockLegacyIds::REDSTONE_ORE => 6,
-                BlockLegacyIds::MELON_BLOCK => 8,
-                BlockLegacyIds::LAPIS_ORE => 18,
+                BlockTypeIds::COAL_ORE, BlockTypeIds::DEEPSLATE_COAL_ORE, BlockTypeIds::NETHER_QUARTZ_ORE, BlockTypeIds::DIAMOND_ORE, BlockTypeIds::DEEPSLATE_DIAMOND_ORE, BlockTypeIds::EMERALD_ORE, BlockTypeIds::DEEPSLATE_EMERALD_ORE => 2,
+                BlockTypeIds::GLOWSTONE, BlockTypeIds::SEA_LANTERN => 4,
+                BlockTypeIds::NETHER_WART_BLOCK => 5,
+                BlockTypeIds::REDSTONE_ORE, BlockTypeIds::DEEPSLATE_REDSTONE_ORE => 6,
+                BlockTypeIds::MELON => 8,
+                BlockTypeIds::LAPIS_LAZULI_ORE, BlockTypeIds::DEEPSLATE_LAPIS_LAZULI_ORE => 18,
                 default => 1
             },
             2 => match ($id) {
-                BlockLegacyIds::COAL_ORE, BlockLegacyIds::NETHER_QUARTZ_ORE, BlockLegacyIds::DIAMOND_ORE, BlockLegacyIds::EMERALD_ORE => 3,
-                BlockLegacyIds::GLOWSTONE => 4,
-                BlockLegacyIds::SEA_LANTERN => 5,
-                BlockLegacyIds::NETHER_WART_BLOCK => 6,
-                BlockLegacyIds::REDSTONE_ORE => 7,
-                BlockLegacyIds::MELON_BLOCK => 9,
-                BlockLegacyIds::LAPIS_ORE => 27,
+                BlockTypeIds::COAL_ORE, BlockTypeIds::DEEPSLATE_COAL_ORE, BlockTypeIds::NETHER_QUARTZ_ORE, BlockTypeIds::DIAMOND_ORE, BlockTypeIds::DEEPSLATE_DIAMOND_ORE, BlockTypeIds::EMERALD_ORE, BlockTypeIds::DEEPSLATE_EMERALD_ORE => 3,
+                BlockTypeIds::GLOWSTONE => 4,
+                BlockTypeIds::SEA_LANTERN => 5,
+                BlockTypeIds::NETHER_WART_BLOCK => 6,
+                BlockTypeIds::REDSTONE_ORE => 7,
+                BlockTypeIds::MELON => 9,
+                BlockTypeIds::LAPIS_LAZULI_ORE, BlockTypeIds::DEEPSLATE_LAPIS_LAZULI_ORE => 27,
                 default => 1
             },
             3 => match ($id) {
-                BlockLegacyIds::COAL_ORE, BlockLegacyIds::NETHER_QUARTZ_ORE, BlockLegacyIds::DIAMOND_ORE, BlockLegacyIds::EMERALD_ORE, BlockLegacyIds::GLOWSTONE => 4,
-                BlockLegacyIds::SEA_LANTERN => 5,
-                BlockLegacyIds::NETHER_WART_BLOCK => 7,
-                BlockLegacyIds::REDSTONE_ORE => 8,
-                BlockLegacyIds::MELON_BLOCK => 9,
-                BlockLegacyIds::LAPIS_ORE => 36,
+                BlockTypeIds::COAL_ORE, BlockTypeIds::DEEPSLATE_COAL_ORE, BlockTypeIds::NETHER_QUARTZ_ORE, BlockTypeIds::DIAMOND_ORE, BlockTypeIds::DEEPSLATE_DIAMOND_ORE, BlockTypeIds::EMERALD_ORE, BlockTypeIds::DEEPSLATE_EMERALD_ORE, BlockTypeIds::GLOWSTONE => 4,
+                BlockTypeIds::SEA_LANTERN => 5,
+                BlockTypeIds::NETHER_WART_BLOCK => 7,
+                BlockTypeIds::REDSTONE_ORE => 8,
+                BlockTypeIds::MELON => 9,
+                BlockTypeIds::LAPIS_LAZULI_ORE, BlockTypeIds::DEEPSLATE_LAPIS_LAZULI_ORE => 36,
                 default => 1
             },
             default => 1,

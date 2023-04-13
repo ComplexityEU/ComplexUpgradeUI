@@ -25,15 +25,18 @@ class EventListener implements Listener{
             $itemEnchantment = $item->getEnchantment($fortuneEnchantment);
 
             if (!$itemEnchantment instanceof EnchantmentInstance) return;
-            if (!in_array($block->getId(), EnchantUtils::SUPPORTED_FORTUNE_BLOCKS, true)) return;
+            if (!in_array($block->getTypeId(), EnchantUtils::SUPPORTED_FORTUNE_BLOCKS, true)) return;
 
             $increase = mt_rand(0, $itemEnchantment->getLevel() + 2) - 1;
             if ($increase < 0) $increase = 0;
 
+            
+
             if ($item instanceof TieredTool && $item->getBlockToolType() === $block->getBreakInfo()->getToolType() && $item->getBlockToolHarvestLevel() >= $block->getBreakInfo()->getToolHarvestLevel()) {
-                $maxPoss = EnchantUtils::getMaxFortuneDrops($block->getId(), $itemEnchantment->getLevel());
+                $maxPoss = EnchantUtils::getMaxFortuneDrops($block->getTypeId(), $itemEnchantment->getLevel());
                 $event->setDrops($this->increaseDrops($drops, $maxPoss, $increase));
             }
+
         }
     }
 

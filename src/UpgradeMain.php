@@ -16,7 +16,6 @@ use pocketmine\item\enchantment\Rarity;
 use pocketmine\item\enchantment\StringToEnchantmentParser;
 use pocketmine\lang\KnownTranslationFactory;
 use pocketmine\plugin\PluginBase;
-
 class UpgradeMain extends PluginBase{
 
     private EconomyProvider $provider;
@@ -30,7 +29,7 @@ class UpgradeMain extends PluginBase{
         $this->saveDefaultConfig();
 
 	    libPiggyEconomy::init();
-	    $this->provider = libPiggyEconomy::getProvider($this->getConfig()->get("economy"));
+	    $this->provider = libPiggyEconomy::getProvider((array)$this->getConfig()->get("economy", []));
 
 		$this->getServer()->getCommandMap()->register("complexupgradeui", new UpgradeCommand($this));
         $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);

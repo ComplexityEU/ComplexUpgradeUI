@@ -24,7 +24,7 @@ class UpgradeCommand extends Command implements PluginOwned, Constants {
 		$this->setAliases(["complexupgradeui", "upgradeui"]);
 	}
 
-	public function execute(CommandSender $sender, string $commandLabel, array $args) {
+	public function execute(CommandSender $sender, string $commandLabel, array $args): void{
 		if(!$sender instanceof Player){
 			$sender->sendMessage(TF::RED . "You must be in-game to use this command!");
 			return;
@@ -34,7 +34,7 @@ class UpgradeCommand extends Command implements PluginOwned, Constants {
 		/** @var UpgradeMain $plugin */
 		$plugin = $this->getOwningPlugin();
 
-		$itemID = $sender->getInventory()->getItemInHand()->getId();
+		$itemID = $sender->getInventory()->getItemInHand()->getTypeId();
 
 
 		if(in_array($itemID, self::PICKAXE, true)){

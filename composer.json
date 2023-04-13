@@ -1,10 +1,66 @@
 {
     "name": "duoincure/complexupgradeui",
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "breathtakinglybinary/libdynamicforms",
+                "version": "1.2.0",
+                "source": {
+                    "url": "https://github.com/BreathTakinglyBinary/libDynamicForms.git",
+                    "type": "git",
+                    "reference": "stable"
+                },
+                "autoload": {
+                    "psr-4": {
+                        "BreathTakinglyBinary\\libDynamicForms\\": "src/BreathTakinglyBinary/libDynamicForms/"
+                    }
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "dapigguy/libpiggyeconomy",
+                "version": "3.0.0",
+                "source": {
+                    "url": "https://github.com/DaPigGuy/libPiggyEconomy.git",
+                    "type": "git",
+                    "reference": "master"
+                },
+                "autoload": {
+                    "psr-4": {
+                        "DaPigGuy\\libPiggyEconomy\\": "src/DaPigGuy/libPiggyEconomy/"
+                    }
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "ifera-mc/updatenotifier",
+                "version": "3.0.0",
+                "source": {
+                    "url": "https://github.com/ifera-mc/UpdateNotifier.git",
+                    "type": "git",
+                    "reference": "master"
+                },
+                "autoload": {
+                    "psr-4": {
+                        "JackMD\\UpdateNotifier\\": "src/JackMD/UpdateNotifier/"
+                    }
+                }
+            }
+        }
+    ],
     "require": {
         "phpstan/phpstan": "1.4.6",
-        "pocketmine/pocketmine-mp": "4.0.0",
+        "pocketmine/pocketmine-mp": "5.0.0-BETA2",
         "phpstan/phpstan-strict-rules": "^1.0",
-        "phpstan/extension-installer": "^1.0"
+        "phpstan/extension-installer": "^1.0",
+        "breathtakinglybinary/libdynamicforms": "*",
+        "dapigguy/libpiggyeconomy": "*",
+        "ifera-mc/updatenotifier": "*"
     },
     "autoload": {
         "psr-4": {

@@ -2,7 +2,7 @@
 
 namespace DuoIncure\ComplexUpgradeUI\utils;
 
-use pocketmine\item\ItemIds;
+use pocketmine\item\ItemTypeIds;
 
 interface Constants{
 
@@ -78,63 +78,63 @@ interface Constants{
 	const MENDING_MAX = 1;
 
 	const PICKAXE = [
-		ItemIds::WOODEN_PICKAXE,
-        ItemIds::STONE_PICKAXE,
-        ItemIds::IRON_PICKAXE,
-        ItemIds::GOLD_PICKAXE,
-        ItemIds::DIAMOND_PICKAXE
+		ItemTypeIds::WOODEN_PICKAXE,
+        ItemTypeIds::STONE_PICKAXE,
+        ItemTypeIds::IRON_PICKAXE,
+        ItemTypeIds::GOLDEN_PICKAXE,
+        ItemTypeIds::DIAMOND_PICKAXE
 	];
 	const AXE = [
-        ItemIds::WOODEN_AXE,
-        ItemIds::STONE_AXE,
-        ItemIds::IRON_AXE,
-        ItemIds::GOLD_AXE,
-        ItemIds::DIAMOND_AXE
+        ItemTypeIds::WOODEN_AXE,
+        ItemTypeIds::STONE_AXE,
+        ItemTypeIds::IRON_AXE,
+        ItemTypeIds::GOLDEN_AXE,
+        ItemTypeIds::DIAMOND_AXE
 	];
 	const SHOVEL = [
-        ItemIds::WOODEN_SHOVEL,
-        ItemIds::STONE_SHOVEL,
-        ItemIds::IRON_SHOVEL,
-        ItemIds::GOLD_SHOVEL,
-        ItemIds::DIAMOND_SHOVEL
+        ItemTypeIds::WOODEN_SHOVEL,
+        ItemTypeIds::STONE_SHOVEL,
+        ItemTypeIds::IRON_SHOVEL,
+        ItemTypeIds::GOLDEN_SHOVEL,
+        ItemTypeIds::DIAMOND_SHOVEL
     ];
 	const SWORD = [
-        ItemIds::WOODEN_SWORD,
-        ItemIds::STONE_SWORD,
-        ItemIds::IRON_SWORD,
-        ItemIds::GOLD_SWORD,
-        ItemIds::DIAMOND_SWORD
+        ItemTypeIds::WOODEN_SWORD,
+        ItemTypeIds::STONE_SWORD,
+        ItemTypeIds::IRON_SWORD,
+        ItemTypeIds::GOLDEN_SWORD,
+        ItemTypeIds::DIAMOND_SWORD
 	];
-	const BOW = ItemIds::BOW;
+	const BOW = ItemTypeIds::BOW;
 
 	const HELMET = [
-        ItemIds::LEATHER_HELMET,
-        ItemIds::CHAIN_HELMET,
-        ItemIds::IRON_HELMET,
-		ItemIds::GOLD_HELMET,
-		ItemIds::DIAMOND_HELMET
+        ItemTypeIds::LEATHER_CAP,
+        ItemTypeIds::CHAINMAIL_HELMET,
+        ItemTypeIds::IRON_HELMET,
+        ItemTypeIds::GOLDEN_HELMET,
+        ItemTypeIds::DIAMOND_HELMET
 	];
 	const CHESTPLATE = [
-		ItemIds::LEATHER_TUNIC,
-		ItemIds::CHAINMAIL_CHESTPLATE,
-		ItemIds::IRON_CHESTPLATE,
-		ItemIds::GOLD_CHESTPLATE,
-		ItemIds::DIAMOND_CHESTPLATE
+        ItemTypeIds::LEATHER_TUNIC,
+        ItemTypeIds::CHAINMAIL_CHESTPLATE,
+        ItemTypeIds::IRON_CHESTPLATE,
+        ItemTypeIds::GOLDEN_CHESTPLATE,
+        ItemTypeIds::DIAMOND_CHESTPLATE
 	];
 	const LEGGINGS = [
-		ItemIds::LEATHER_PANTS,
-		ItemIds::CHAIN_LEGGINGS,
-		ItemIds::IRON_LEGGINGS,
-		ItemIds::GOLD_LEGGINGS,
-		ItemIds::DIAMOND_LEGGINGS
+        ItemTypeIds::LEATHER_PANTS,
+        ItemTypeIds::CHAINMAIL_LEGGINGS,
+        ItemTypeIds::IRON_LEGGINGS,
+        ItemTypeIds::GOLDEN_LEGGINGS,
+        ItemTypeIds::DIAMOND_LEGGINGS
 	];
 
 	const BOOTS = [
-		ItemIds::LEATHER_BOOTS,
-		ItemIds::CHAIN_BOOTS,
-		ItemIds::IRON_BOOTS,
-		ItemIds::GOLD_BOOTS,
-		ItemIds::DIAMOND_BOOTS
+        ItemTypeIds::LEATHER_BOOTS,
+        ItemTypeIds::CHAINMAIL_BOOTS,
+        ItemTypeIds::IRON_BOOTS,
+        ItemTypeIds::GOLDEN_BOOTS,
+        ItemTypeIds::DIAMOND_BOOTS
 	];
 
 	const TYPE_PICKAXE = "pickaxe";
