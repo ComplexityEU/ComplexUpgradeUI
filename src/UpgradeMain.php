@@ -7,7 +7,7 @@ use DaPigGuy\libPiggyEconomy\exceptions\UnknownProviderException;
 use DaPigGuy\libPiggyEconomy\libPiggyEconomy;
 use DaPigGuy\libPiggyEconomy\providers\EconomyProvider;
 use DuoIncure\ComplexUpgradeUI\commands\UpgradeCommand;
-use JackMD\UpdateNotifier\UpdateNotifier;
+use DuoIncure\ComplexUpgradeUI\task\UpdateNotifierTask;
 use pocketmine\data\bedrock\EnchantmentIdMap;
 use pocketmine\data\bedrock\EnchantmentIds;
 use pocketmine\item\enchantment\Enchantment;
@@ -16,6 +16,7 @@ use pocketmine\item\enchantment\Rarity;
 use pocketmine\item\enchantment\StringToEnchantmentParser;
 use pocketmine\lang\KnownTranslationFactory;
 use pocketmine\plugin\PluginBase;
+
 class UpgradeMain extends PluginBase{
 
     private EconomyProvider $provider;
@@ -25,7 +26,8 @@ class UpgradeMain extends PluginBase{
      * @throws MissingProviderDependencyException
      */
     protected function onEnable(): void {
-        UpdateNotifier::checkUpdate($this->getDescription()->getName(), $this->getDescription()->getVersion());
+        $this->getServer()->getAsyncPool()->submitTask(new UpdateNotifierTask($this->getDescription()->getName(), $this->getDescription()->getVersion()));
+
         $this->saveDefaultConfig();
 
 	    libPiggyEconomy::init();
@@ -37,6 +39,9 @@ class UpgradeMain extends PluginBase{
 		$this->registerEnchantments();
 	}
 
+    /**
+     * @return EconomyProvider
+     */
 	public function getEconomyProvider(): EconomyProvider{
         return $this->provider;
     }

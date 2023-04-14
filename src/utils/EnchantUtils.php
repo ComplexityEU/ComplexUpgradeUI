@@ -24,6 +24,11 @@ class EnchantUtils{
         BlockTypeIds::SEA_LANTERN,
     ];
 
+    /**
+     * @param int $id
+     * @param int $fortuneLevel
+     * @return int
+     */
     public static function getMaxFortuneDrops(int $id, int $fortuneLevel): int{
         return match ($fortuneLevel) {
             1 => match ($id) {

@@ -34,23 +34,6 @@
                     }
                 }
             }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "ifera-mc/updatenotifier",
-                "version": "3.0.0",
-                "source": {
-                    "url": "https://github.com/ifera-mc/UpdateNotifier.git",
-                    "type": "git",
-                    "reference": "master"
-                },
-                "autoload": {
-                    "psr-4": {
-                        "JackMD\\UpdateNotifier\\": "src/JackMD/UpdateNotifier/"
-                    }
-                }
-            }
         }
     ],
     "require": {
@@ -59,8 +42,7 @@
         "phpstan/phpstan-strict-rules": "^1.0",
         "phpstan/extension-installer": "^1.0",
         "breathtakinglybinary/libdynamicforms": "*",
-        "dapigguy/libpiggyeconomy": "*",
-        "ifera-mc/updatenotifier": "*"
+        "dapigguy/libpiggyeconomy": "*"
     },
     "autoload": {
         "psr-4": {
