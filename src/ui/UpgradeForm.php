@@ -27,9 +27,9 @@ class UpgradeForm extends SimpleForm implements Constants {
      * @param string $type
      */
 	public function __construct(
-	    private readonly UpgradeMain $plugin,
-        Player                       $player,
-        private readonly string      $type
+	    private UpgradeMain $plugin,
+        Player              $player,
+        private string      $type
     ) {
 		$cfg = $plugin->getConfig();
 
