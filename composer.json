@@ -4,25 +4,8 @@
         {
             "type": "package",
             "package": {
-                "name": "breathtakinglybinary/libdynamicforms",
-                "version": "1.2.0",
-                "source": {
-                    "url": "https://github.com/BreathTakinglyBinary/libDynamicForms.git",
-                    "type": "git",
-                    "reference": "stable"
-                },
-                "autoload": {
-                    "psr-4": {
-                        "BreathTakinglyBinary\\libDynamicForms\\": "src/BreathTakinglyBinary/libDynamicForms/"
-                    }
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
                 "name": "dapigguy/libpiggyeconomy",
-                "version": "3.0.0",
+                "version": "3.0.2",
                 "source": {
                     "url": "https://github.com/DaPigGuy/libPiggyEconomy.git",
                     "type": "git",
@@ -38,10 +21,9 @@
     ],
     "require": {
         "phpstan/phpstan": "1.4.6",
-        "pocketmine/pocketmine-mp": "5.0.0-BETA2",
+        "pocketmine/pocketmine-mp": "5.1.2",
         "phpstan/phpstan-strict-rules": "^1.0",
         "phpstan/extension-installer": "^1.0",
-        "breathtakinglybinary/libdynamicforms": "*",
         "dapigguy/libpiggyeconomy": "*"
     },
     "autoload": {

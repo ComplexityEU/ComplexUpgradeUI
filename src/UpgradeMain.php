@@ -49,10 +49,7 @@ class UpgradeMain extends PluginBase{
     public function registerEnchantments(): void{
         $fortuneEnchantment = new Enchantment(KnownTranslationFactory::enchantment_lootBonusDigger(), Rarity::RARE, ItemFlags::TOOL, ItemFlags::NONE, 3);
 
-        $eidMap = EnchantmentIdMap::getInstance();
-        $steParser = StringToEnchantmentParser::getInstance();
-
-        $eidMap->register(EnchantmentIds::FORTUNE, $fortuneEnchantment);
-        $steParser->register("fortune", fn() => $fortuneEnchantment);
+        EnchantmentIdMap::getInstance()->register(EnchantmentIds::FORTUNE, $fortuneEnchantment);
+        StringToEnchantmentParser::getInstance()->register("fortune", fn() => $fortuneEnchantment);
     }
 }

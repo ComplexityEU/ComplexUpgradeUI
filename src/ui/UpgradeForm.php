@@ -2,7 +2,7 @@
 
 namespace DuoIncure\ComplexUpgradeUI\ui;
 
-use BreathTakinglyBinary\libDynamicForms\SimpleForm;
+use DuoIncure\ComplexUpgradeUI\ui\lib\SimpleForm;
 use pocketmine\data\bedrock\EnchantmentIdMap;
 use pocketmine\data\bedrock\EnchantmentIds;
 use pocketmine\item\enchantment\EnchantmentInstance;
@@ -27,9 +27,9 @@ class UpgradeForm extends SimpleForm implements Constants {
      * @param string $type
      */
 	public function __construct(
-	    private UpgradeMain $plugin,
-        Player $player,
-        private string $type
+	    private readonly UpgradeMain $plugin,
+        Player                       $player,
+        private readonly string      $type
     ) {
 		$cfg = $plugin->getConfig();
 
