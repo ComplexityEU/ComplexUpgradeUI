@@ -8,13 +8,6 @@ use DaPigGuy\libPiggyEconomy\libPiggyEconomy;
 use DaPigGuy\libPiggyEconomy\providers\EconomyProvider;
 use DuoIncure\ComplexUpgradeUI\commands\UpgradeCommand;
 use DuoIncure\ComplexUpgradeUI\task\UpdateNotifierTask;
-use pocketmine\data\bedrock\EnchantmentIdMap;
-use pocketmine\data\bedrock\EnchantmentIds;
-use pocketmine\item\enchantment\Enchantment;
-use pocketmine\item\enchantment\ItemFlags;
-use pocketmine\item\enchantment\Rarity;
-use pocketmine\item\enchantment\StringToEnchantmentParser;
-use pocketmine\lang\KnownTranslationFactory;
 use pocketmine\plugin\PluginBase;
 
 class UpgradeMain extends PluginBase{
@@ -34,9 +27,6 @@ class UpgradeMain extends PluginBase{
 	    $this->provider = libPiggyEconomy::getProvider((array)$this->getConfig()->get("economy", []));
 
 		$this->getServer()->getCommandMap()->register("complexupgradeui", new UpgradeCommand($this));
-        $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
-
-		$this->registerEnchantments();
 	}
 
     /**
@@ -44,12 +34,5 @@ class UpgradeMain extends PluginBase{
      */
 	public function getEconomyProvider(): EconomyProvider{
         return $this->provider;
-    }
-
-    public function registerEnchantments(): void{
-        $fortuneEnchantment = new Enchantment(KnownTranslationFactory::enchantment_lootBonusDigger(), Rarity::RARE, ItemFlags::TOOL, ItemFlags::NONE, 3);
-
-        EnchantmentIdMap::getInstance()->register(EnchantmentIds::FORTUNE, $fortuneEnchantment);
-        StringToEnchantmentParser::getInstance()->register("fortune", fn() => $fortuneEnchantment);
     }
 }
