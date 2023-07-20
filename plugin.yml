@@ -1,6 +1,6 @@
 ---
 name: ComplexUpgradeUI
-version: 2.1.2
+version: 2.1.3
 main: DuoIncure\ComplexUpgradeUI\UpgradeMain
 api: 5.0.0
 src-namespace-prefix: DuoIncure\ComplexUpgradeUI
