@@ -20,7 +20,7 @@
         }
     ],
     "require": {
-        "phpstan/phpstan": "1.10.25",
+        "phpstan/phpstan": "1.10.28",
         "pocketmine/pocketmine-mp": "5.1.3",
         "phpstan/phpstan-strict-rules": "^1.0",
         "phpstan/extension-installer": "^1.0",
