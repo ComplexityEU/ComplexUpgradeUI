@@ -21,14 +21,16 @@ abstract class SimpleForm extends Form{
     }
 
     public function processData(&$data) : void {
-        if(!is_int($data)) {
-            throw new FormValidationException("Expected an integer response, got " . gettype($data));
+        if($data !== null) {
+            if (!is_int($data)) {
+                throw new FormValidationException("Expected an integer response, got " . gettype($data));
+            }
+            $count = count($this->data["buttons"]);
+            if ($data >= $count || $data < 0) {
+                throw new FormValidationException("Button $data does not exist");
+            }
+            $data = $this->labelMap[$data] ?? null;
         }
-        $count = count($this->data["buttons"]);
-        if($data >= $count || $data < 0) {
-            throw new FormValidationException("Button $data does not exist");
-        }
-        $data = $this->labelMap[$data] ?? null;
     }
 
     /**

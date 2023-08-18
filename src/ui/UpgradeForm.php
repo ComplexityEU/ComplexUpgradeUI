@@ -112,6 +112,14 @@ class UpgradeForm extends SimpleForm implements Constants {
      * @return float|int
      */
     public function getCost(int $currentEnchantLevel, array $data): float|int{
+        if($currentEnchantLevel <= 0) {
+            return match($this->plugin->getConfig()->getNested("economy.provider")) {
+                "bedrockeconomy", "economyapi" => ($data["cost"] ?? 10000),
+                "xp" => ($data["cost"] ?? 5),
+                default => 0,
+            };
+        }
+
         return match ($this->plugin->getConfig()->getNested("economy.provider")) {
             "bedrockeconomy", "economyapi" => $currentEnchantLevel * ($data["cost"] ?? 10000) + 10000,
             "xp" => $currentEnchantLevel * ($data["cost"] ?? 5) + 5,
